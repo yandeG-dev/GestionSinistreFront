@@ -6,8 +6,79 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container": "#ffe9e6",
+            "on-surface-variant": "#5e3f3b",
+            "on-primary-container": "#fff5f3",
+            "on-primary-fixed-variant": "#930007",
+            "secondary-fixed-dim": "#c6c6c7",
+            "on-error": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-high": "#ffe2de",
+            "on-primary-fixed": "#410001",
+            "secondary": "#5d5f5f",
+            "on-tertiary": "#ffffff",
+            "on-tertiary-container": "#f5f7ff",
+            "tertiary-fixed-dim": "#a7c8ff",
+            "surface-dim": "#f6d2cd",
+            "surface-tint": "#c0000c",
+            "on-secondary-fixed-variant": "#454747",
+            "on-background": "#2a1714",
+            "outline-variant": "#e9bcb6",
+            "primary-fixed": "#ffdad5",
+            "tertiary-container": "#0071d4",
+            "on-secondary": "#ffffff",
+            "on-error-container": "#93000a",
+            "surface-bright": "#fff8f7",
+            "background": "#fff8f7",
+            "on-secondary-container": "#616363",
+            "error-container": "#ffdad6",
+            "surface-container-low": "#fff0ee",
+            "tertiary": "#0059a8",
+            "secondary-container": "#dfe0e0",
+            "surface": "#fff8f7",
+            "primary": "#b5000b",
+            "error": "#ba1a1a",
+            "on-tertiary-fixed": "#001b3c",
+            "primary-container": "#e30613",
+            "outline": "#936e69",
+            "on-surface": "#2a1714",
+            "tertiary-fixed": "#d5e3ff",
+            "on-tertiary-fixed-variant": "#004788",
+            "surface-variant": "#fedad5",
+            "inverse-on-surface": "#ffedea",
+            "secondary-fixed": "#e2e2e2",
+            "inverse-surface": "#412b28",
+            "on-primary": "#ffffff",
+            "primary-fixed-dim": "#ffb4aa",
+            "surface-container-highest": "#fedad5",
+            "inverse-primary": "#ffb4aa",
+            "on-secondary-fixed": "#1a1c1c"
+          },
+          "fontFamily": {
+            "label-caps": ["Inter"],
+            "body-sm": ["Inter"],
+            "body-md": ["Inter"],
+            "h3": ["Inter"],
+            "h1": ["Inter"],
+            "h2": ["Inter"],
+            "body-lg": ["Inter"]
+          }
+        }
+      }
+    }
+  </script>
 </head>
-<body>
+<body class="bg-background min-h-screen text-on-background font-body-md antialiased">
   <app-root></app-root>
 </body>
 </html>
