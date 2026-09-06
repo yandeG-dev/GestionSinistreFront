@@ -1,1 +1,114 @@
-<p>admin-dashboard works!</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+
+    <!-- CARD 1: TOTAL UTILISATEURS -->
+    <div
+        class="bg-white p-5 rounded-2xl border border-rose-100 shadow-sm flex items-center justify-between relative overflow-hidden group hover:border-slate-300 transition-all">
+        <div class="space-y-1 z-10">
+            <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Total Utilisateurs</p>
+            <div class="flex items-baseline space-x-2">
+                <span class="text-2xl font-black text-slate-900">{{ totalUsers }}</span>
+                <span class="text-[10px] font-semibold text-slate-400">comptes enregistrés</span>
+            </div>
+        </div>
+        <div
+            class="w-12 h-12 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center shrink-0 group-hover:bg-slate-900 group-hover:text-white transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- CARD 2: STATUTS (ACTIFS & INACTIFS) -->
+    <div
+        class="bg-white p-5 rounded-2xl border border-rose-100 shadow-sm flex items-center justify-between relative overflow-hidden group hover:border-emerald-200 transition-all">
+        <div class="space-y-1 z-10">
+            <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Statut des comptes</p>
+            <div class="flex items-center space-x-3 pt-1">
+                <!-- Actifs -->
+                <div class="flex items-center space-x-1.5" title="Utilisateurs actifs">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                    <span class="text-xl font-extrabold text-emerald-600">{{ activeUsers }}</span>
+                    <span class="text-[10px] font-medium text-slate-400">actifs</span>
+                </div>
+                <span class="text-slate-300">|</span>
+                <!-- Inactifs -->
+                <div class="flex items-center space-x-1.5" title="Utilisateurs inactifs">
+                    <span class="w-2 h-2 rounded-full bg-slate-400"></span>
+                    <span class="text-xl font-extrabold text-slate-500">{{ inactiveUsers }}</span>
+                    <span class="text-[10px] font-medium text-slate-400">inactifs</span>
+                </div>
+            </div>
+        </div>
+        <div
+            class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- CARD 3: RÔLES D'EXÉCUTION (AGENTS & EXPERTS) -->
+    <div
+        class="bg-white p-5 rounded-2xl border border-rose-100 shadow-sm flex items-center justify-between relative overflow-hidden group hover:border-amber-200 transition-all">
+        <div class="space-y-1 z-10">
+            <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Agents & Experts</p>
+            <div class="flex items-center space-x-3 pt-1">
+                <!-- Agents -->
+                <div class="flex items-center space-x-1.5">
+                    <span class="text-xl font-extrabold text-orange-600">{{ roleCounts?.AGENT || 0 }}</span>
+                    <span class="text-[10px] font-medium text-slate-400">Agents</span>
+                </div>
+                <span class="text-slate-300">|</span>
+                <!-- Experts -->
+                <div class="flex items-center space-x-1.5">
+                    <span class="text-xl font-extrabold text-emerald-600">{{ roleCounts?.EXPERT || 0 }}</span>
+                    <span class="text-[10px] font-medium text-slate-400">Experts</span>
+                </div>
+            </div>
+        </div>
+        <div
+            class="w-12 h-12 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center shrink-0 group-hover:bg-orange-600 group-hover:text-white transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- CARD 4: RÔLES DE GESTION (ADMINS & GESTIONNAIRES) -->
+    <div
+        class="bg-white p-5 rounded-2xl border border-rose-100 shadow-sm flex items-center justify-between relative overflow-hidden group hover:border-purple-200 transition-all">
+        <div class="space-y-1 z-10">
+            <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Admins, Gest. & Comptables</p>
+            <div class="flex items-center space-x-3 pt-1">
+                <!-- Admins -->
+                <div class="flex items-center space-x-1.5">
+                    <span class="text-xl font-extrabold text-blue-600">{{ roleCounts?.ADMINISTRATEUR || 0 }}</span>
+                    <span class="text-[10px] font-medium text-slate-400">Admins</span>
+                </div>
+                <span class="text-slate-300">|</span>
+                <!-- Gestionnaires -->
+                <div class="flex items-center space-x-1.5">
+                    <span class="text-xl font-extrabold text-purple-600">{{ roleCounts?.GESTIONNAIRE || 0 }}</span>
+                    <span class="text-[10px] font-medium text-slate-400">Gest.</span>
+                </div>
+                <span class="text-slate-300">|</span>
+                <!-- Comptables -->
+                <div class="flex items-center space-x-1.5">
+                    <span class="text-xl font-extrabold text-teal-600">{{ roleCounts?.COMPTABLE || 0 }}</span>
+                    <span class="text-[10px] font-medium text-slate-400">Compt.</span>
+                </div>
+            </div>
+        </div>
+        <div
+            class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center shrink-0 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+        </div>
+    </div>
+
+</div>

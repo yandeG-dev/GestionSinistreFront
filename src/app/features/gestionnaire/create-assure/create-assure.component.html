@@ -1,0 +1,254 @@
+<main class="flex-1 min-w-0 bg-slate-50/50 overflow-y-auto font-sans text-slate-800">
+
+    <!-- BARRE SUPÉRIEURE -->
+    <header
+        class="h-16 border-b border-slate-200/80 bg-white/50 backdrop-blur-sm px-8 flex items-center justify-between sticky top-0 z-10">
+        <div class="flex items-center space-x-2 text-xs text-slate-400">
+            <a href="#" class="hover:text-slate-600">Assurés</a>
+            <span>/</span>
+            <span class="text-slate-800 font-semibold">Nouveau compte & Contrat</span>
+        </div>
+
+        <div class="flex items-center space-x-3">
+            <div class="flex items-center space-x-2">
+                <div
+                    class="w-8 h-8 rounded-full bg-red-700 text-white font-bold text-xs flex items-center justify-center">
+                    MG
+                </div>
+                <div class="text-left hidden sm:block">
+                    <p class="text-xs font-semibold text-slate-800">Modou Gestionnaire</p>
+                    <p class="text-[10px] text-slate-400">Espace Inscription</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENU PRINCIPAL -->
+    <div class="p-8 max-w-5xl mx-auto space-y-6">
+
+        <!-- EN-TÊTE DE PAGE -->
+        <div class="flex items-center justify-between">
+            <div>
+                <h1 class="text-2xl font-bold text-slate-900">Créer un Compte Assuré & Contrat Initial</h1>
+                <p class="text-xs text-slate-500 mt-0.5">Enregistrez un nouveau client et associez directement sa
+                    première police d'assurance auto.</p>
+            </div>
+            <a href="#"
+                class="text-xs font-semibold text-slate-500 hover:text-slate-800 border border-slate-200 px-3 py-2 rounded-xl bg-white hover:bg-slate-50 transition-colors">
+                Annuler
+            </a>
+        </div>
+
+        <!-- FORMULAIRE PRINCIPAL -->
+        <form class="space-y-6">
+
+            <!-- SECTEUR 1 : INFORMATIONS DE L'ASSURÉ (Compte User) -->
+            <div class="bg-white p-6 rounded-2xl border border-rose-100/60 shadow-sm space-y-4">
+                <div class="flex items-center space-x-2 border-b border-slate-100 pb-3">
+                    <div
+                        class="w-7 h-7 rounded-lg bg-red-50 text-red-700 font-bold text-xs flex items-center justify-center">
+                        1
+                    </div>
+                    <div>
+                        <h2 class="text-sm font-bold text-slate-900">Informations Personnelles de l'Assuré</h2>
+                        <p class="text-[11px] text-slate-400">Identifiants pour la création de son compte utilisateur
+                        </p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                    <!-- Nom & Prénom -->
+                    <div class="space-y-1">
+                        <label class="font-semibold text-slate-700">Nom complet de l'assuré <span
+                                class="text-red-500">*</span></label>
+                        <input type="text" placeholder="ex: Moussa Diop"
+                            class="w-full px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-red-500 bg-slate-50/30"
+                            required />
+                    </div>
+
+                    <!-- Adresse Email -->
+                    <div class="space-y-1">
+                        <label class="font-semibold text-slate-700">Adresse Email (Identifiant) <span
+                                class="text-red-500">*</span></label>
+                        <input type="email" placeholder="ex: moussa.diop@email.com"
+                            class="w-full px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-red-500 bg-slate-50/30"
+                            required />
+                    </div>
+
+                    <!-- Téléphone -->
+                    <div class="space-y-1">
+                        <label class="font-semibold text-slate-700">Téléphone portable <span
+                                class="text-red-500">*</span></label>
+                        <input type="tel" placeholder="ex: +221 77 123 45 67"
+                            class="w-full px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-red-500 bg-slate-50/30"
+                            required />
+                    </div>
+
+                    <!-- Mot de passe temporaire -->
+                    <div class="space-y-1">
+                        <label class="font-semibold text-slate-700">Mot de passe temporaire <span
+                                class="text-red-500">*</span></label>
+                        <input type="password" value="Pass2026Auto!"
+                            class="w-full px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-red-500 bg-slate-50/30 font-mono text-slate-600"
+                            required />
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTEUR 2 : INFORMATIONS DU VÉHICULE (Alimentation de vehicule_id) -->
+            <div class="bg-white p-6 rounded-2xl border border-rose-100/60 shadow-sm space-y-4">
+                <div class="flex items-center space-x-2 border-b border-slate-100 pb-3">
+                    <div
+                        class="w-7 h-7 rounded-lg bg-red-50 text-red-700 font-bold text-xs flex items-center justify-center">
+                        2
+                    </div>
+                    <div>
+                        <h2 class="text-sm font-bold text-slate-900">Véhicule à Assurer</h2>
+                        <p class="text-[11px] text-slate-400">Identification du véhicule automobile lié à la couverture
+                        </p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                    <!-- Immatriculation -->
+                    <div class="space-y-1">
+                        <label class="font-semibold text-slate-700">Immatriculation <span
+                                class="text-red-500">*</span></label>
+                        <input type="text" placeholder="ex: DK-9842-BF"
+                            class="w-full px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-red-500 bg-slate-50/30 uppercase font-semibold text-slate-800"
+                            required />
+                    </div>
+
+                    <!-- Marque & Modèle -->
+                    <div class="space-y-1">
+                        <label class="font-semibold text-slate-700">Marque & Modèle <span
+                                class="text-red-500">*</span></label>
+                        <input type="text" placeholder="ex: Toyota RAV4 2022"
+                            class="w-full px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-red-500 bg-slate-50/30"
+                            required />
+                    </div>
+
+                    <!-- Carte Grise / Numéro de Châssis -->
+                    <div class="space-y-1">
+                        <label class="font-semibold text-slate-700">N° Châssis (VIN)</label>
+                        <input type="text" placeholder="ex: VF1ABC123456789"
+                            class="w-full px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-red-500 bg-slate-50/30 font-mono" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTEUR 3 : CONDITIONS DU CONTRAT (Champs exacts de la table contrats) -->
+            <div class="bg-white p-6 rounded-2xl border border-rose-100/60 shadow-sm space-y-4">
+                <div class="flex items-center space-x-2 border-b border-slate-100 pb-3">
+                    <div
+                        class="w-7 h-7 rounded-lg bg-red-50 text-red-700 font-bold text-xs flex items-center justify-center">
+                        3
+                    </div>
+                    <div>
+                        <h2 class="text-sm font-bold text-slate-900">Détails du Contrat d'Assurance Automobile</h2>
+                        <p class="text-[11px] text-slate-400">Paramètres financiers et dates de validité du contrat</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-xs">
+
+                    <!-- numeroContrat -->
+                    <div class="space-y-1">
+                        <label class="font-semibold text-slate-700">Numéro de Contrat <span
+                                class="text-red-500">*</span></label>
+                        <input type="text" value="CTR-2026-AUTO-901"
+                            class="w-full px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-red-500 bg-slate-100 font-bold text-slate-800"
+                            readonly />
+                    </div>
+
+                    <!-- typeContrat -->
+                    <div class="space-y-1">
+                        <label class="font-semibold text-slate-700">Type de Contrat <span
+                                class="text-red-500">*</span></label>
+                        <select
+                            class="w-full px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-red-500 bg-slate-50/30 font-medium text-slate-800">
+                            <option value="Tous Risques">Tous Risques</option>
+                            <option value="Tiers Collision">Tiers Collision</option>
+                            <option value="Responsabilité Civile">Responsabilité Civile (Tiers Simple)</option>
+                        </select>
+                    </div>
+
+                    <!-- garantie -->
+                    <div class="space-y-1">
+                        <label class="font-semibold text-slate-700">Option de Garantie <span
+                                class="text-red-500">*</span></label>
+                        <select
+                            class="w-full px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-red-500 bg-slate-50/30 text-slate-800">
+                            <option value="Garantie Complète (Vol + Incendie + Bris de glace)">Garantie Complète (Vol +
+                                Incendie + Bris)</option>
+                            <option value="Vol & Incendie">Vol & Incendie uniquement</option>
+                            <option value="Bris de glace">Bris de glace uniquement</option>
+                            <option value="Inondation & Catastrophes">Catastrophes Naturelles</option>
+                        </select>
+                    </div>
+
+                    <!-- dateDebut -->
+                    <div class="space-y-1">
+                        <label class="font-semibold text-slate-700">Date Début d'effet <span
+                                class="text-red-500">*</span></label>
+                        <input type="date"
+                            class="w-full px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-red-500 bg-slate-50/30 text-slate-700"
+                            required />
+                    </div>
+
+                    <!-- dateFin -->
+                    <div class="space-y-1">
+                        <label class="font-semibold text-slate-700">Date Fin d'échéance <span
+                                class="text-red-500">*</span></label>
+                        <input type="date"
+                            class="w-full px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-red-500 bg-slate-50/30 text-slate-700"
+                            required />
+                    </div>
+
+                    <!-- prime -->
+                    <div class="space-y-1">
+                        <label class="font-semibold text-slate-700">Prime Annuelle (FCFA) <span
+                                class="text-red-500">*</span></label>
+                        <div class="relative">
+                            <input type="number" step="0.01" placeholder="ex: 250000"
+                                class="w-full pl-3 pr-12 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-red-500 bg-slate-50/30 font-bold text-slate-800"
+                                required />
+                            <span class="absolute right-3 top-2 text-[10px] font-bold text-slate-400">FCFA</span>
+                        </div>
+                    </div>
+
+                    <!-- franchise -->
+                    <div class="space-y-1">
+                        <label class="font-semibold text-slate-700">Montant Franchise (FCFA) <span
+                                class="text-red-500">*</span></label>
+                        <div class="relative">
+                            <input type="number" step="0.01" placeholder="ex: 50000"
+                                class="w-full pl-3 pr-12 py-2 border border-slate-200 rounded-xl focus:outline-none focus:border-red-500 bg-slate-50/30 font-bold text-slate-800"
+                                required />
+                            <span class="absolute right-3 top-2 text-[10px] font-bold text-slate-400">FCFA</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- BOUTONS D'ACTION (SUBMIT) -->
+            <div class="flex items-center justify-end space-x-3 pt-2">
+                <button type="reset"
+                    class="px-5 py-2.5 text-xs font-semibold text-slate-600 bg-white border border-slate-200 rounded-xl hover:bg-slate-50 transition-colors">
+                    Réinitialiser
+                </button>
+                <button type="submit"
+                    class="px-6 py-2.5 text-xs font-bold text-white bg-red-700 rounded-xl hover:bg-red-800 shadow-lg shadow-red-700/20 transition-all flex items-center space-x-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Créer le Compte et Générer le Contrat</span>
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</main>

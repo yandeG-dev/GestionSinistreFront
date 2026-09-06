@@ -1,9 +1,28 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './features/login/login.component';
-import { HomeComponent } from './features/home/home.component';
-
+import { LoginComponent } from './shared/components/login/login.component';
+import { HomeComponent } from './shared/components/home/home.component';
+import { AdminDashboardComponent } from './features/admin/admin-dashboard/admin-dashboard.component';
+import { ListeUsersComponent } from './features/admin/liste-users/liste-users.component';
+import { SidebarComponent } from './layouts/sidebar/sidebar.component';
+import { ProfilComponent } from './shared/components/profil/profil.component';
+import { TwoFactorAuthComponent } from './shared/components/two-factor-auth/two-factor-auth.component';
+import { ListeDemandeComponent } from './features/gestionnaire/liste-demande/liste-demande.component';
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'connexion', component: LoginComponent },
-
+  { path: 'two-factor-auth', component: TwoFactorAuthComponent },
+  {
+    path: '',
+    component: SidebarComponent,
+    children: [
+      { path: 'admin', component: AdminDashboardComponent },
+      { path: 'gestionnaire', loadComponent: () => import('./features/gestionnaire/gestionnaire-dashboard/gestionnaire-dashboard.component').then(m => m.GestionnaireDashboardComponent) },
+      { path: 'liste-demande', loadComponent: () => import('./features/gestionnaire/liste-demande/liste-demande.component').then(m => m.ListeDemandeComponent) },
+      { path: 'liste-assure', loadComponent: () => import('./features/gestionnaire/liste-assure/liste-assure.component').then(m => m.ListeAssureComponent) },
+      { path: 'utilisateurs', component: ListeUsersComponent },
+      { path: 'profil', component: ProfilComponent },
+      { path: 'change-password', loadComponent: () => import('./features/change-password/change-password.component').then(m => m.ChangePasswordComponent) },
+      { path: 'create-assure', loadComponent: () => import('./features/gestionnaire/create-assure/create-assure.component').then(m => m.CreateAssureComponent) },
+    ]
+  },
 ];
