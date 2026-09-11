@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+﻿import { Routes } from '@angular/router';
 import { LoginComponent } from './shared/components/login/login.component';
 import { HomeComponent } from './shared/components/home/home.component';
 import { AdminDashboardComponent } from './features/admin/admin-dashboard/admin-dashboard.component';
@@ -23,6 +23,12 @@ export const routes: Routes = [
       { path: 'profil', component: ProfilComponent },
       { path: 'change-password', loadComponent: () => import('./features/change-password/change-password.component').then(m => m.ChangePasswordComponent) },
       { path: 'create-assure', loadComponent: () => import('./features/gestionnaire/create-assure/create-assure.component').then(m => m.CreateAssureComponent) },
+      { path: 'assure', loadComponent: () => import('./features/assure/assure-dashboard/assure-dashboard.component').then(m => m.AssureDashboardComponent) },
+      { path: 'declaration/info-sinistre', loadComponent: () => import('./features/assure/declaration/info-sinistre/info-sinistre.component').then(m => m.InfoSinistreComponent) },
+      { path: 'declaration/pieces-justificatives', loadComponent: () => import('./features/assure/declaration/pieces-justificatives/pieces-justificatives.component').then(m => m.PiecesJustificativesComponent) },
+      { path: 'declaration/confirmation', loadComponent: () => import('./features/assure/declaration/confirmation/confirmation.component').then(m => m.ConfirmationComponent) },
     ]
   },
 ];
+
+

@@ -1,0 +1,205 @@
+﻿<main class="flex-1 min-w-0 bg-slate-50/50 overflow-y-auto font-sans text-slate-800">
+
+    <!-- BARRE SUPÉRIEURE DE NAVIGATION -->
+    <header class="h-16 border-b border-slate-200/80 bg-white/50 backdrop-blur-sm px-8 flex items-center justify-between sticky top-0 z-10">
+        <div class="flex items-center space-x-2 text-xs text-slate-400">
+            <a href="#" class="hover:text-slate-600">Espace Assuré</a>
+            <span>/</span>
+            <span class="text-slate-800 font-semibold">Déclarer un sinistre</span>
+        </div>
+
+        <div class="flex items-center space-x-3">
+            <div class="flex items-center space-x-2">
+                <div class="w-8 h-8 rounded-full bg-slate-800 text-white font-bold text-xs flex items-center justify-center">
+                    FD
+                </div>
+                <div class="text-left hidden sm:block">
+                    <p class="text-xs font-semibold text-slate-800">Fafa Diop</p>
+                    <p class="text-[10px] text-slate-400">Assuré Automobile</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENU PRINCIPAL -->
+    <div class="p-8 max-w-6xl mx-auto space-y-6">
+
+        <!-- EN-TÊTE DE PAGE -->
+        <div>
+            <h1 class="text-2xl font-bold text-slate-900">Déclarer un sinistre</h1>
+            <p class="text-xs text-slate-500 mt-0.5">Fournissez les documents requis pour accélérer l'analyse de votre dossier.</p>
+        </div>
+
+        <!-- STEPPER (INDICATEUR D'ÉTAPES) -->
+        <div class="flex items-center space-x-3 py-2 text-xs">
+            <div class="flex items-center space-x-2 text-emerald-600">
+                <span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 font-bold text-[11px] flex items-center justify-center border border-emerald-300">✓</span>
+                <span class="font-medium text-slate-600">Informations</span>
+            </div>
+            <div class="w-12 h-px bg-emerald-300"></div>
+            <div class="flex items-center space-x-2">
+                <span class="w-6 h-6 rounded-full bg-red-700 text-white font-bold text-[11px] flex items-center justify-center shadow-sm">2</span>
+                <span class="font-bold text-red-700">Pièces justificatives</span>
+            </div>
+            <div class="w-12 h-px bg-slate-200"></div>
+            <div class="flex items-center space-x-2 text-slate-400">
+                <span class="w-6 h-6 rounded-full border border-slate-200 bg-white font-semibold text-[11px] flex items-center justify-center">3</span>
+                <span class="font-medium">Confirmation</span>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+            <form class="lg:col-span-2 space-y-6" (ngSubmit)="onSubmit()">
+
+                <!-- BLOC 1 : CONSTAT AMIABLE & PROCÈS VERBAL -->
+                <div class="bg-white p-6 rounded-2xl border border-rose-100/60 shadow-sm space-y-4">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2 text-red-700">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            <h2 class="text-sm font-bold text-slate-900">Constat amiable ou Déclaration de police</h2>
+                        </div>
+                        <span class="text-[10px] font-semibold text-slate-400">Format : PDF, JPG, PNG (Max 10Mo)</span>
+                    </div>
+
+                    <div *ngIf="!constatFile" class="relative border-2 border-dashed border-slate-200 hover:border-red-400 bg-slate-50/50 hover:bg-red-50/20 rounded-xl p-6 transition-colors text-center cursor-pointer">
+                        <input type="file" (change)="onConstatSelected($event)" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" title="Ajouter un fichier">
+                        <div class="mx-auto w-10 h-10 rounded-full bg-red-50 text-red-700 flex items-center justify-center mb-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 0115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                            </svg>
+                        </div>
+                        <p class="text-xs font-semibold text-slate-700">Cliquez pour téléverser ou glissez-déposez le fichier</p>
+                        <p class="text-[10px] text-slate-400 mt-1">Constat amiable recto/verso scanné ou pris en photo</p>
+                    </div>
+
+                    <div *ngIf="constatFile" class="p-3 border border-red-200 rounded-xl bg-red-50/30 flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <div>
+                                <p class="font-bold text-slate-800 text-xs">{{ constatFile.name }}</p>
+                                <p class="text-[10px] text-slate-400">{{ (constatFile.size / 1024 / 1024).toFixed(2) }} MB</p>
+                            </div>
+                        </div>
+                        <button type="button" (click)="removeConstat()" class="text-xs text-red-600 hover:text-red-800 font-semibold p-2">Supprimer</button>
+                    </div>
+                </div>
+
+                <!-- BLOC 2 : PHOTOS DES DOMMAGES -->
+                <div class="bg-white p-6 rounded-2xl border border-rose-100/60 shadow-sm space-y-4">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2 text-red-700">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            <h2 class="text-sm font-bold text-slate-900">Photos des dommages du véhicule</h2>
+                        </div>
+                        <span class="text-[10px] font-semibold text-slate-400">3 photos minimum</span>
+                    </div>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                        <div *ngFor="let file of photoFiles; let i = index" class="relative border border-slate-200 rounded-xl overflow-hidden group bg-slate-100 h-28 flex flex-col items-center justify-center text-center p-2">
+                            <span class="text-[10px] font-bold text-slate-600 break-all">{{ file.name }}</span>
+                            <span class="text-[9px] text-slate-400 mt-1">{{ (file.size / 1024 / 1024).toFixed(2) }} MB</span>
+                            <button type="button" (click)="removePhoto(i)" class="absolute top-1.5 right-1.5 bg-slate-900/70 hover:bg-red-700 text-white p-1 rounded-full text-xs transition-colors z-20">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                            </button>
+                        </div>
+                        <div class="relative border-2 border-dashed border-slate-200 hover:border-red-400 bg-slate-50/50 hover:bg-red-50/20 rounded-xl h-28 flex flex-col items-center justify-center text-center cursor-pointer p-2">
+                            <input type="file" multiple (change)="onPhotosSelected($event)" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" title="Ajouter une photo">
+                            <svg class="w-6 h-6 text-slate-400 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg>
+                            <span class="text-[11px] font-semibold text-slate-600">Ajouter une photo</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BLOC 3 : DOCUMENTS CONDUCTEUR -->
+                <div class="bg-white p-6 rounded-2xl border border-rose-100/60 shadow-sm space-y-4">
+                    <div class="flex items-center space-x-2 text-red-700">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 012-2h2a2 2 0 012 2v1m-6 0h6" />
+                        </svg>
+                        <h2 class="text-sm font-bold text-slate-900">Permis de conduire & Carte Grise</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                        
+                        <!-- Permis de conduire -->
+                        <div class="relative border-2 border-dashed border-slate-200 hover:border-red-400 bg-slate-50/50 hover:bg-red-50/20 rounded-xl p-4 flex flex-col items-center justify-center text-center cursor-pointer transition-colors" [ngClass]="{'border-solid border-emerald-300 bg-emerald-50': permisFile}">
+                            <input *ngIf="!permisFile" type="file" (change)="onPermisSelected($event)" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" title="Ajouter Permis">
+                            
+                            <!-- Si aucun fichier -->
+                            <ng-container *ngIf="!permisFile">
+                                <svg class="w-6 h-6 text-slate-400 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 012-2h2a2 2 0 012 2v1m-6 0h6" /></svg>
+                                <p class="text-[11px] font-semibold text-slate-600">Uploader Permis</p>
+                            </ng-container>
+
+                            <!-- Si fichier sélectionné -->
+                            <ng-container *ngIf="permisFile">
+                                <svg class="w-6 h-6 text-emerald-500 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                <p class="text-[10px] font-bold text-slate-800 truncate w-full px-2">{{ permisFile.name }}</p>
+                                <button type="button" (click)="removePermis()" class="mt-2 text-[10px] text-red-500 font-semibold relative z-20">Retirer</button>
+                            </ng-container>
+                        </div>
+
+                        <!-- Carte Grise -->
+                        <div class="relative border-2 border-dashed border-slate-200 hover:border-red-400 bg-slate-50/50 hover:bg-red-50/20 rounded-xl p-4 flex flex-col items-center justify-center text-center cursor-pointer transition-colors" [ngClass]="{'border-solid border-emerald-300 bg-emerald-50': carteGriseFile}">
+                            <input *ngIf="!carteGriseFile" type="file" (change)="onCarteGriseSelected($event)" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" title="Ajouter Carte Grise">
+                            
+                            <!-- Si aucun fichier -->
+                            <ng-container *ngIf="!carteGriseFile">
+                                <svg class="w-6 h-6 text-slate-400 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                                <p class="text-[11px] font-semibold text-slate-600">Uploader Carte Grise</p>
+                            </ng-container>
+
+                            <!-- Si fichier sélectionné -->
+                            <ng-container *ngIf="carteGriseFile">
+                                <svg class="w-6 h-6 text-emerald-500 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                <p class="text-[10px] font-bold text-slate-800 truncate w-full px-2">{{ carteGriseFile.name }}</p>
+                                <button type="button" (click)="removeCarteGrise()" class="mt-2 text-[10px] text-red-500 font-semibold relative z-20">Retirer</button>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BARRE DE NAVIGATION INFÉRIEURE -->
+                <div class="bg-white p-4 rounded-2xl border border-rose-100/60 shadow-sm flex items-center justify-between">
+                    <button type="button" routerLink="/declaration/info-sinistre" class="px-5 py-2.5 text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-xl transition-colors z-20 relative">
+                        Retour
+                    </button>
+                    <button type="submit" [disabled]="isSubmitting" class="px-6 py-2.5 text-xs font-bold text-white bg-red-700 rounded-xl hover:bg-red-800 shadow-md shadow-red-700/20 transition-all flex items-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed z-20 relative">
+                        <span *ngIf="!isSubmitting">Passer au récapitulatif</span><span *ngIf="isSubmitting">Envoi en cours...</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </button>
+                </div>
+
+            </form>
+
+            <!-- PANNEAU D'ASSISTANCE LATÉRAL -->
+            <div class="bg-indigo-50/40 border border-indigo-100/60 rounded-2xl p-5 space-y-4">
+                <div>
+                    <h3 class="text-sm font-bold text-slate-900">Conseil pour vos pièces</h3>
+                    <p class="text-[11px] text-slate-500 mt-1 leading-relaxed">
+                        Des photos claires sous plusieurs angles et un constat bien lisible réduisent le délai de traitement de votre dossier à moins de 24h.
+                    </p>
+                </div>
+                <div class="bg-white p-3.5 rounded-xl border border-slate-200/60 space-y-2 text-xs">
+                    <p class="font-bold text-slate-800 text-[11px]">Conseils prise de vue :</p>
+                    <ul class="text-[11px] text-slate-600 space-y-1 list-disc list-inside">
+                        <li>Vue d'ensemble du véhicule</li>
+                        <li>Gros plan sur les impacts</li>
+                        <li>Plaque d'immatriculation visible</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</main>

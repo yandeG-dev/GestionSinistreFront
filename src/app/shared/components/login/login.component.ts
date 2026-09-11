@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
@@ -41,9 +41,9 @@ export class LoginComponent {
             } else if (user.role === 'Assure') {
               this.router.navigate(['/assure']);
             } else if (user.role === 'Expert') {
-              this.router.navigate(['/expert']);
+              this.router.navigate(['/profil']);
             } else if (user.role === 'Comptable') {
-              this.router.navigate(['/comptable']);
+              this.router.navigate(['/profil']);
             } else {
               this.router.navigate(['/']);
             }
@@ -56,3 +56,4 @@ export class LoginComponent {
     });
   }
 }
+
