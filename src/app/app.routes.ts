@@ -1,4 +1,4 @@
-﻿import { Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { LoginComponent } from './shared/components/login/login.component';
 import { HomeComponent } from './shared/components/home/home.component';
 import { AdminDashboardComponent } from './features/admin/admin-dashboard/admin-dashboard.component';
@@ -27,6 +27,8 @@ export const routes: Routes = [
       { path: 'declaration/info-sinistre', loadComponent: () => import('./features/assure/declaration/info-sinistre/info-sinistre.component').then(m => m.InfoSinistreComponent) },
       { path: 'declaration/pieces-justificatives', loadComponent: () => import('./features/assure/declaration/pieces-justificatives/pieces-justificatives.component').then(m => m.PiecesJustificativesComponent) },
       { path: 'declaration/confirmation', loadComponent: () => import('./features/assure/declaration/confirmation/confirmation.component').then(m => m.ConfirmationComponent) },
+      { path: 'mes-sinistres', loadComponent: () => import('./features/assure/liste-sinistre/liste-sinistre.component').then(m => m.ListeSinistreComponent) },
+      { path: 'mes-remboursements', loadComponent: () => import('./features/assure/liste-remboursement/liste-remboursement.component').then(m => m.ListeRemboursementComponent) },
     ]
   },
 ];

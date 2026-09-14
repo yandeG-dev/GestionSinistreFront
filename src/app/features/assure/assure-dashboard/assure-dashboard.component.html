@@ -1,65 +1,119 @@
 <main class="flex-1 min-w-0 bg-slate-50/50 overflow-y-auto font-sans text-slate-800">
 
-    <!-- BARRE SUPÉRIEURE DE NAVIGATION -->
-    <header
-        class="h-16 border-b border-slate-200/80 bg-white/50 backdrop-blur-sm px-8 flex items-center justify-between sticky top-0 z-10">
-        <div class="flex items-center space-x-2 text-xs text-slate-400">
-            <span>Espace Assuré</span>
-            <span>/</span>
-            <span class="text-slate-800 font-semibold">Tableau de bord</span>
-        </div>
-
-        <div class="flex items-center space-x-4">
-            <!-- Notifications -->
-            <button class="p-1.5 text-slate-400 hover:text-slate-600 relative">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 01-6 0v-1m6 0H9" />
-                </svg>
-                <span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-red-600"></span>
-            </button>
-            <div class="h-6 w-px bg-slate-200"></div>
-
-            <!-- Profil Assuré -->
-            <div class="flex items-center space-x-2">
-                <div
-                    class="w-8 h-8 rounded-full bg-slate-800 text-white font-bold text-xs flex items-center justify-center">
-                    FD
-                </div>
-                <div class="text-left hidden sm:block">
-                    <p class="text-xs font-semibold text-slate-800">Fafa Diop</p>
-                    <p class="text-[10px] text-slate-400">Assuré Automobile</p>
-                </div>
-            </div>
-        </div>
-    </header>
 
     <div class="p-8 max-w-7xl mx-auto space-y-6">
 
-        <!-- BANNIÈRE DE BIENVENUE + BOUTON DÉCLARATION -->
-        <div
-            class="bg-gradient-to-r from-slate-900 via-slate-800 to-red-950 p-6 rounded-2xl text-white shadow-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-            <div class="space-y-1">
-                <span
-                    class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-                    ● Contrat Actif
-                </span>
-                <h1 class="text-2xl font-bold">Bonjour, Fafa Diop 👋</h1>
-                <p class="text-xs text-slate-300">Bienvenue sur votre espace personnel. Gérez votre contrat et vos
-                    déclarations de sinistre auto en tout temps.</p>
+        <!-- EN-TÊTE ÉPURÉ DE BIENVENUE -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+                <div class="flex items-center space-x-2 mb-1">
+                    <h1 class="text-2xl font-bold text-slate-900">Bonjour, {{ nomComplet }} 👋</h1>
+                    <span
+                        class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                        ● Contrat Actif
+                    </span>
+                </div>
+                <p class="text-xs text-slate-500">Bienvenue sur votre espace personnel. Gérez votre contrat et vos
+                    déclarations en tout temps.</p>
             </div>
 
-            <button
-                class="bg-red-700 hover:bg-red-600 text-white font-semibold text-xs px-5 py-3 rounded-xl shadow-md transition-all flex items-center space-x-2 shrink-0">
+            <!-- BOUTON D'ACTION PRINCIPAL ROUGE -->
+            <a routerLink="/declaration/info-sinistre"
+                class="bg-red-700 hover:bg-red-800 text-white text-xs font-bold px-5 py-2.5 rounded-xl shadow-md shadow-red-700/20 transition-all flex items-center space-x-2 shrink-0 self-start sm:self-auto">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                 </svg>
                 <span>Déclarer un sinistre</span>
-            </button>
+            </a>
         </div>
 
-        <!-- SECTEUR 1 : RÉSUMÉ DU CONTRAT ET VÉHICULE ASSURÉ -->
+        <!-- GRILLE DE CARTES KPI (Remplacement du bloc dégradé) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
+            <!-- Carte 1 : Action Rapide Rouge -->
+            <div
+                class="bg-red-700 p-5 rounded-2xl text-white shadow-md shadow-red-700/15 flex flex-col justify-between space-y-4">
+                <div class="flex items-center justify-between">
+                    <span class="text-[11px] font-semibold text-red-100">Déclaration rapide</span>
+                    <div class="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center text-white">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-xs text-red-100/90 leading-tight">Un incident survenu ? Transmettez vos pièces en 3
+                        étapes.</p>
+                    <a routerLink="/declaration/info-sinistre"
+                        class="inline-block mt-3 text-xs font-bold underline underline-offset-4 text-white hover:text-red-100">Nouveau
+                        dossier →</a>
+                </div>
+            </div>
+
+            <!-- Carte 2 : Sinistres Déclarés -->
+            <div
+                class="bg-white p-5 rounded-2xl border border-rose-100/60 shadow-sm flex flex-col justify-between space-y-2">
+                <div class="flex items-center justify-between text-slate-400">
+                    <span class="text-[11px] font-semibold">Sinistres Déclarés</span>
+                    <div class="w-7 h-7 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-2xl font-black text-slate-900">{{ sinistres.length }} <span
+                            class="text-xs font-normal text-slate-400">dossier(s)</span></p>
+                    <p class="text-[10px] text-amber-600 font-semibold mt-1">● Suivi en temps réel</p>
+                </div>
+            </div>
+
+            <!-- Carte 3 : Véhicule Assuré -->
+            <div
+                class="bg-white p-5 rounded-2xl border border-rose-100/60 shadow-sm flex flex-col justify-between space-y-2">
+                <div class="flex items-center justify-between text-slate-400">
+                    <span class="text-[11px] font-semibold">Véhicule Assuré</span>
+                    <div class="w-7 h-7 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 7h8m-8 4h8m-4 4h4m-8 0H4a2 2 0 01-2-2V7a2 2 0 012-2h16a2 2 0 01-2 2v8a2 2 0 01-2 2h-4" />
+                        </svg>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-base font-black text-slate-900 truncate">{{ contrat?.vehicule?.marque }} {{
+                        contrat?.vehicule?.modele }}</p>
+                    <p class="text-[10px] text-slate-400 font-mono mt-0.5">{{ contrat?.vehicule?.immatriculation ||
+                        'Immatriculation N/A' }}</p>
+                </div>
+            </div>
+
+            <!-- Carte 4 : Échéance Contrat -->
+            <div
+                class="bg-white p-5 rounded-2xl border border-rose-100/60 shadow-sm flex flex-col justify-between space-y-2">
+                <div class="flex items-center justify-between text-slate-400">
+                    <span class="text-[11px] font-semibold">Prochaine Échéance</span>
+                    <div class="w-7 h-7 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-2xl font-black text-slate-900">{{ joursRestants }} <span
+                            class="text-xs font-normal text-slate-400">jours</span></p>
+                    <div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden mt-2">
+                        <div class="bg-emerald-500 h-full" [style.width.%]="progressPercent"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- SECTEUR 1 : RÉSUMÉ DU CONTRAT ET VALIDITÉ -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
             <!-- CARTE DU CONTRAT PRINCIPAL (2 colonnes) -->
@@ -68,11 +122,12 @@
                     <div>
                         <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Police
                             d'assurance</span>
-                        <h2 class="text-lg font-black text-slate-900">N° CTR-2024-88</h2>
+                        <h2 class="text-lg font-black text-slate-900">N° {{ contrat?.numeroContrat || 'CTR-2024-88' }}
+                        </h2>
                     </div>
                     <span
                         class="px-3 py-1 rounded-full text-xs font-semibold bg-red-50 text-red-700 border border-red-100">
-                        Tous Risques
+                        {{ contrat?.garantie || 'Tous Risques' }}
                     </span>
                 </div>
 
@@ -80,23 +135,25 @@
                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs">
                     <div class="space-y-0.5">
                         <p class="text-slate-400 text-[11px]">Début de garantie</p>
-                        <p class="font-bold text-slate-700">01 Janvier 2026</p>
+                        <p class="font-bold text-slate-700">{{ formatDate(contrat?.dateDebut) || '01 Janvier 2026' }}
+                        </p>
                     </div>
                     <div class="space-y-0.5">
                         <p class="text-slate-400 text-[11px]">Échéance</p>
-                        <p class="font-bold text-slate-700">31 Décembre 2026</p>
+                        <p class="font-bold text-slate-700">{{ formatDate(contrat?.dateFin) || '31 Décembre 2026' }}</p>
                     </div>
                     <div class="space-y-0.5">
                         <p class="text-slate-400 text-[11px]">Franchise applicative</p>
-                        <p class="font-bold text-slate-700">50 000 FCFA</p>
+                        <p class="font-bold text-slate-700">{{ formatMontant(contrat?.franchise) || '50 000 FCFA' }}</p>
                     </div>
                     <div class="space-y-0.5">
                         <p class="text-slate-400 text-[11px]">Prime Annuelle</p>
-                        <p class="font-bold text-slate-700">250 000 FCFA</p>
+                        <p class="font-bold text-slate-700">{{ formatMontant(contrat?.prime) || '250 000 FCFA' }}</p>
                     </div>
                     <div class="space-y-0.5 col-span-2">
                         <p class="text-slate-400 text-[11px]">Garantie Souscrite</p>
-                        <p class="font-semibold text-slate-800">Garantie Complète (Vol + Incendie + Bris de glace)</p>
+                        <p class="font-semibold text-slate-800">{{ contrat?.typeContrat || 'Garantie Complète (Vol +
+                            Incendie + Bris de glace)' }}</p>
                     </div>
                 </div>
 
@@ -111,8 +168,10 @@
                             </svg>
                         </div>
                         <div>
-                            <p class="text-xs font-bold text-slate-900">Toyota RAV4 (2022)</p>
-                            <p class="text-[10px] text-slate-400 font-mono">Immatriculation : DK-9842-BF</p>
+                            <p class="text-xs font-bold text-slate-900">{{ contrat?.vehicule?.marque }} {{
+                                contrat?.vehicule?.modele }}</p>
+                            <p class="text-[10px] text-slate-400 font-mono">Immatriculation : {{
+                                contrat?.vehicule?.immatriculation }}</p>
                         </div>
                     </div>
                     <button class="text-xs font-semibold text-red-700 hover:text-red-800 underline">
@@ -121,7 +180,7 @@
                 </div>
             </div>
 
-            <!-- CARTE RENOUVELLEMENT / STATUT CONTRAT (1 colonne) -->
+            <!-- CARTE RENOUVELLEMENT / ATTESTATION (1 colonne) -->
             <div
                 class="bg-white p-6 rounded-2xl border border-rose-100/60 shadow-sm flex flex-col justify-between space-y-4">
                 <div>
@@ -134,13 +193,13 @@
                     </div>
 
                     <div class="text-center py-4 space-y-1">
-                        <p class="text-3xl font-black text-slate-900">112 jours</p>
+                        <p class="text-3xl font-black text-slate-900">{{ joursRestants }} jours</p>
                         <p class="text-[11px] text-slate-400">restants avant la prochaine échéance</p>
                     </div>
 
                     <!-- Barre de progression -->
                     <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                        <div class="bg-emerald-500 h-full w-2/3"></div>
+                        <div class="bg-emerald-500 h-full" [style.width.%]="progressPercent"></div>
                     </div>
                 </div>
 
@@ -167,7 +226,7 @@
                         de vos dossiers</p>
                 </div>
                 <span class="text-xs font-semibold text-slate-500">
-                    2 Dossier(s)
+                    {{ sinistres.length }} Dossier(s)
                 </span>
             </div>
 
@@ -185,19 +244,20 @@
                     </thead>
                     <tbody class="divide-y divide-slate-100 text-xs">
 
-                        <!-- Sinistre 1 -->
-                        <tr class="hover:bg-slate-50/60 transition-colors">
+                        <tr *ngFor="let sinistre of sinistres" class="hover:bg-slate-50/60 transition-colors">
                             <td class="py-4 px-4">
-                                <p class="font-bold text-slate-800">Accident de circulation - Choc avant</p>
-                                <p class="text-[10px] text-slate-400">Déclaré le 04/09/2026</p>
+                                <p class="font-bold text-slate-800">{{ sinistre.typeSinistre }}</p>
+                                <p class="text-[10px] text-slate-400">Déclaré le {{ formatDate(sinistre.created_at) }}
+                                </p>
                             </td>
                             <td class="py-4 px-4 text-slate-600 font-medium">
-                                Autoroute à péage, Dakar
+                                {{ sinistre.lieuSinistre }}
                             </td>
                             <td class="py-4 px-4">
                                 <span
-                                    class="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-semibold bg-amber-50 text-amber-700 border border-amber-200">
-                                    En attente
+                                    class="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-semibold"
+                                    [ngClass]="getStatutClass(sinistre.statut)">
+                                    {{ sinistre.statut }}
                                 </span>
                             </td>
                             <td class="py-4 px-4 font-bold text-slate-500">
@@ -211,29 +271,10 @@
                             </td>
                         </tr>
 
-                        <!-- Sinistre 2 -->
-                        <tr class="hover:bg-slate-50/60 transition-colors">
-                            <td class="py-4 px-4">
-                                <p class="font-bold text-slate-800">Vol de roues & rétroviseurs</p>
-                                <p class="text-[10px] text-slate-400">Déclaré le 22/08/2026</p>
-                            </td>
-                            <td class="py-4 px-4 text-slate-600 font-medium">
-                                Mermoz, Dakar
-                            </td>
-                            <td class="py-4 px-4">
-                                <span
-                                    class="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
-                                    Remboursé
-                                </span>
-                            </td>
-                            <td class="py-4 px-4 font-bold text-emerald-600">
-                                180 000 FCFA
-                            </td>
-                            <td class="py-4 px-4 text-right">
-                                <button
-                                    class="px-3 py-1.5 text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors">
-                                    Voir Décompte
-                                </button>
+                        <!-- Message si aucun sinistre -->
+                        <tr *ngIf="sinistres.length === 0">
+                            <td colspan="5" class="py-10 text-center text-slate-400 text-xs">
+                                Aucun sinistre déclaré pour le moment.
                             </td>
                         </tr>
 

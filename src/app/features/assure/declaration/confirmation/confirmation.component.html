@@ -1,27 +1,4 @@
-﻿<main class="flex-1 min-w-0 bg-slate-50/50 overflow-y-auto font-sans text-slate-800">
-
-    <!-- BARRE SUPÉRIEURE DE NAVIGATION -->
-    <header
-        class="h-16 border-b border-slate-200/80 bg-white/50 backdrop-blur-sm px-8 flex items-center justify-between sticky top-0 z-10">
-        <div class="flex items-center space-x-2 text-xs text-slate-400">
-            <a href="#" class="hover:text-slate-600">Espace Assuré</a>
-            <span>/</span>
-            <span class="text-slate-800 font-semibold">Confirmation de sinistre</span>
-        </div>
-
-        <div class="flex items-center space-x-3">
-            <div class="flex items-center space-x-2">
-                <div
-                    class="w-8 h-8 rounded-full bg-slate-800 text-white font-bold text-xs flex items-center justify-center">
-                    FD
-                </div>
-                <div class="text-left hidden sm:block">
-                    <p class="text-xs font-semibold text-slate-800">Fafa Diop</p>
-                    <p class="text-[10px] text-slate-400">Assuré Automobile</p>
-                </div>
-            </div>
-        </div>
-    </header>
+<main class="flex-1 min-w-0 bg-slate-50/50 overflow-y-auto font-sans text-slate-800">
 
     <!-- CONTENU PRINCIPAL -->
     <div class="p-8 max-w-4xl mx-auto space-y-6">
@@ -68,26 +45,33 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
                 <div class="space-y-1">
                     <p class="text-slate-400 text-[11px]">Véhicule & Contrat</p>
-                    <p class="font-bold text-slate-800">Toyota RAV4 (DK-9842-BF)</p>
-                    <p class="text-[11px] text-slate-500">Contrat #CTR-2024-88 — Tous Risques</p>
+                    <p class="font-bold text-slate-800" *ngIf="sinistreDetails?.contrat">
+                        {{ sinistreDetails.contrat.marque_vehicule }} {{ sinistreDetails.contrat.modele_vehicule }} ({{ sinistreDetails.contrat.immatriculation }})
+                    </p>
+                    <p class="text-[11px] text-slate-500" *ngIf="sinistreDetails?.contrat">
+                        Contrat #{{ sinistreDetails.contrat.numeroContrat }} — {{ sinistreDetails.contrat.garantie }}
+                    </p>
+                    <p class="font-bold text-slate-800 italic text-[11px]" *ngIf="!sinistreDetails?.contrat">En attente d'association</p>
                 </div>
 
                 <div class="space-y-1">
-                    <p class="text-slate-400 text-[11px]">Date & Lieu</p>
+                    <p class="text-slate-400 text-[11px]">Date & Lieu ({{ sinistreDetails?.typeSinistre }})</p>
                     <p class="font-bold text-slate-800">{{ sinistreDetails?.dateSinistre }} à {{ sinistreDetails?.heureSinistre || "ND" }}</p>
                     <p class="text-[11px] text-slate-500">{{ sinistreDetails?.lieuSinistre }}</p>
                 </div>
 
                 <div class="space-y-1 md:col-span-2">
                     <p class="text-slate-400 text-[11px]">Pièces jointes transmises</p>
-                    <div class="flex flex-wrap gap-2 pt-1">
-                        <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-[10px] font-medium">📄
-                            Constat_Amiable.pdf</span>
-                        <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-[10px] font-medium">🖼️
-                            Photo_Choc_Avant.jpg</span>
-                        <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-[10px] font-medium">📄
-                            Permis_de_conduire.pdf</span>
+                    <div class="flex flex-wrap gap-2 pt-1" *ngIf="fichiersJoints.length > 0; else noDocs">
+                        <span *ngFor="let doc of fichiersJoints" class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-[10px] font-medium">
+                            <span *ngIf="doc.type_document === 'pdf'">📄</span>
+                            <span *ngIf="doc.type_document !== 'pdf'">🖼️</span>
+                            Document #{{ doc.id }} ({{ doc.type_document }})
+                        </span>
                     </div>
+                    <ng-template #noDocs>
+                        <p class="text-[11px] text-slate-500 italic">Aucune pièce jointe transmise.</p>
+                    </ng-template>
                 </div>
             </div>
         </div>

@@ -1,12 +1,14 @@
-﻿import { Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { SinistreService } from '../../../../shared/services/sinistre.service';
+import { DeclarerSinistreResponse } from '../../../../shared/models/sinistre.model';
 
 @Component({
   selector: 'app-pieces-justificatives',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule],
   templateUrl: './pieces-justificatives.component.html',
   styleUrl: './pieces-justificatives.component.css'
 })
@@ -75,9 +77,13 @@ export class PiecesJustificativesComponent {
     this.isSubmitting = true;
     const formData = new FormData();
     
-    // Ajouter les champs texte
+    // Ajouter les champs texte en ignorant les valeurs vides (évite les erreurs de validation Laravel)
     Object.keys(sinistreData).forEach(key => {
-      formData.append(key, sinistreData[key]);
+      const typedKey = key as keyof typeof sinistreData;
+      const value = sinistreData[typedKey];
+      if (value !== null && value !== undefined && value !== '') {
+        formData.append(key, value);
+      }
     });
 
     // Ajouter les fichiers sous "documents[]" pour que le backend les attrape tous
@@ -95,15 +101,23 @@ export class PiecesJustificativesComponent {
     });
 
     this.sinistreService.declarerSinistre(formData).subscribe({
-      next: (response: any) => {
+      next: (response: DeclarerSinistreResponse) => {
         this.isSubmitting = false;
         this.sinistreService.setSinistreData(response.sinistre);
+        this.sinistreService.setLastSinistreResponse(response);
         this.router.navigate(['/declaration/confirmation']);
       },
       error: (err: any) => {
         this.isSubmitting = false;
-        console.error(err);
-        alert("Une erreur est survenue lors de l'envoi.");
+        console.error('Erreur déclaration sinistre:', err);
+        if (err.status === 422 && err.error?.errors) {
+          const messages = Object.values(err.error.errors).flat().join('\n');
+          alert('Erreur de validation :\n' + messages);
+        } else if (err.status === 401) {
+          alert('Session expirée. Veuillez vous reconnecter.');
+        } else {
+          alert("Une erreur est survenue lors de l'envoi. Statut: " + err.status);
+        }
       }
     });
   }
