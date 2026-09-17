@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { AuthService } from '../../../shared/services/auth.service';
-import { SinistreService } from '../../../shared/services/sinistre.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthService } from '../../../core/services/auth.service';
+import { SinistreService } from '../../../core/services/sinistre.service';
+import { Sinistre } from '../../../core/models/sinistre.model';
 
 @Component({
   selector: 'app-assure-dashboard',
@@ -15,13 +15,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class AssureDashboardComponent implements OnInit {
   user: any = null;
   contrat: any = null;
-  sinistres: any[] = [];
+  sinistres: Sinistre[] = [];
   joursRestants: number = 0;
   progressPercent: number = 0;
 
-  private apiUrl = 'http://localhost:8000/api';
-
-  constructor(private authService: AuthService, private http: HttpClient) {}
+  constructor(private authService: AuthService, private sinistreService: SinistreService) { }
 
   ngOnInit(): void {
     this.user = this.authService.getUser();
@@ -39,17 +37,10 @@ export class AssureDashboardComponent implements OnInit {
     return `${this.user.prenom} ${this.user.nom}`;
   }
 
-  private getHeaders(): HttpHeaders {
-    return new HttpHeaders({
-      'Authorization': `Bearer ${this.authService.getToken()}`,
-      'Accept': 'application/json'
-    });
-  }
-
   loadContrat(): void {
-    this.http.get<any[]>(`${this.apiUrl}/assure/contrats`, { headers: this.getHeaders() })
+    this.sinistreService.getContratsAssure()
       .subscribe({
-        next: (contrats) => {
+        next: (contrats: any[]) => {
           this.contrat = contrats?.[0] ?? null;
           if (this.contrat) {
             const debut = new Date(this.contrat.dateDebut);
@@ -66,9 +57,9 @@ export class AssureDashboardComponent implements OnInit {
   }
 
   loadSinistres(): void {
-    this.http.get<any[]>(`${this.apiUrl}/sinistres`, { headers: this.getHeaders() })
+    this.sinistreService.mesSinistres()
       .subscribe({
-        next: (data) => { this.sinistres = data; },
+        next: (data: Sinistre[]) => { this.sinistres = data; },
         error: () => { this.sinistres = []; }
       });
   }
@@ -96,3 +87,4 @@ export class AssureDashboardComponent implements OnInit {
     return new Intl.NumberFormat('fr-FR').format(val) + ' FCFA';
   }
 }
+

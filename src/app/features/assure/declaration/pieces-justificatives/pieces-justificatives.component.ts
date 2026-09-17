@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { SinistreService } from '../../../../shared/services/sinistre.service';
-import { DeclarerSinistreResponse } from '../../../../shared/models/sinistre.model';
+import { SinistreService } from '../../../../core/services/sinistre.service';
+import { DeclarerSinistreResponse } from '../../../../core/models/sinistre.model';
 
 @Component({
   selector: 'app-pieces-justificatives',
@@ -23,7 +23,7 @@ export class PiecesJustificativesComponent {
   constructor(
     private sinistreService: SinistreService,
     private router: Router
-  ) {}
+  ) { }
 
   onConstatSelected(event: any) {
     if (event.target.files.length > 0) {
@@ -76,7 +76,7 @@ export class PiecesJustificativesComponent {
 
     this.isSubmitting = true;
     const formData = new FormData();
-    
+
     // Ajouter les champs texte en ignorant les valeurs vides (évite les erreurs de validation Laravel)
     Object.keys(sinistreData).forEach(key => {
       const typedKey = key as keyof typeof sinistreData;

@@ -29,6 +29,7 @@ export const routes: Routes = [
       { path: 'declaration/confirmation', loadComponent: () => import('./features/assure/declaration/confirmation/confirmation.component').then(m => m.ConfirmationComponent) },
       { path: 'mes-sinistres', loadComponent: () => import('./features/assure/liste-sinistre/liste-sinistre.component').then(m => m.ListeSinistreComponent) },
       { path: 'mes-remboursements', loadComponent: () => import('./features/assure/liste-remboursement/liste-remboursement.component').then(m => m.ListeRemboursementComponent) },
+      { path: 'detail-sinistre/:id', loadComponent: () => import('./shared/component/detail-sinistre/detail-sinistre.component').then(m => m.DetailSinistreComponent) },
     ]
   },
 ];

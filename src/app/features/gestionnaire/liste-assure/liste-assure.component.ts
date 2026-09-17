@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UserService, User } from '../../../shared/services/user.service';
+import { UserService, User } from '../../../core/services/user.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';

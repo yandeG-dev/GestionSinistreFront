@@ -2,7 +2,7 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { SinistreService } from '../../../../shared/services/sinistre.service';
+import { SinistreService } from '../../../../core/services/sinistre.service';
 
 @Component({
   selector: 'app-info-sinistre',
@@ -12,7 +12,7 @@ import { SinistreService } from '../../../../shared/services/sinistre.service';
   styleUrl: './info-sinistre.component.css'
 })
 export class InfoSinistreComponent implements OnInit {
-  
+
   formData = {
     typeSinistre: '',
     dateSinistre: '',
@@ -24,7 +24,7 @@ export class InfoSinistreComponent implements OnInit {
   constructor(
     private sinistreService: SinistreService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     // Plus besoin de charger les contrats, le gestionnaire l'associera plus tard
@@ -35,10 +35,10 @@ export class InfoSinistreComponent implements OnInit {
       alert("Veuillez remplir tous les champs obligatoires.");
       return;
     }
-    
+
     // Sauvegarder dans le service pour l'étape suivante
     this.sinistreService.setSinistreData(this.formData);
-    
+
     // Naviguer vers l'étape des pièces justificatives
     this.router.navigate(['/declaration/pieces-justificatives']);
   }

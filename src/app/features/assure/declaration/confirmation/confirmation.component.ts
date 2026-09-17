@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
-import { SinistreService } from '../../../../shared/services/sinistre.service';
+import { SinistreService } from '../../../../core/services/sinistre.service';
 
 @Component({
   selector: 'app-confirmation',
@@ -18,7 +18,7 @@ export class ConfirmationComponent implements OnInit {
   constructor(
     private sinistreService: SinistreService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.lastResponse = this.sinistreService.getLastSinistreResponse();

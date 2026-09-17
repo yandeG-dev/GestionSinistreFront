@@ -1,4 +1,4 @@
-﻿<div class="flex h-screen bg-slate-50 font-sans antialiased overflow-hidden">
+<div class="flex h-screen bg-slate-50 font-sans antialiased overflow-hidden">
 
     <!-- SIDEBAR -->
     <aside class="w-64 bg-white border-r border-slate-200 flex flex-col justify-between shrink-0">
@@ -99,24 +99,24 @@
                     <span>Contracts</span>
                 </a>
 
-                <a routerLink="/sinistres" *ngIf="isAssure()"
+                <a routerLink="/mes-sinistres" *ngIf="isAssure()"
                     routerLinkActive="bg-red-50 text-red-600 border-r-4 border-red-600 font-semibold"
                     class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-600 hover:bg-red-50 hover:text-red-600 transition-colors text-sm">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                     </svg>
-                    <span>Sinistres</span>
+                    <span>Mes sinistres</span>
                 </a>
 
-                <a routerLink="/rembursements" *ngIf="isAssure()"
+                <a routerLink="/mes-remboursements" *ngIf="isAssure()"
                     routerLinkActive="bg-red-50 text-red-600 border-r-4 border-red-600 font-semibold"
                     class="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-600 hover:bg-red-50 hover:text-red-600 transition-colors text-sm">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M3 10h18M7 15h1m4 0h1m-7 4h12a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
-                    <span>Remboursements</span>
+                    <span>Mes remboursements</span>
                 </a>
             </nav>
         </div>

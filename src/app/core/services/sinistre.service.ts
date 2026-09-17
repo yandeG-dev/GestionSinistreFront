@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Sinistre, SinistreFormData, DeclarerSinistreResponse } from '../models/sinistre.model';
@@ -7,7 +8,7 @@ import { Sinistre, SinistreFormData, DeclarerSinistreResponse } from '../models/
   providedIn: 'root'
 })
 export class SinistreService {
-  private apiUrl = 'http://localhost:8000/api';
+  private apiUrl = environment.apiUrl;
   private sinistreData: SinistreFormData | null = null;
   private lastSinistreResponse: DeclarerSinistreResponse | null = null;
 

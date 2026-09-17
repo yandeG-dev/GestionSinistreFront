@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AjoutUsersComponent } from '../ajout-users/ajout-users.component';
-import { UserService, User } from '../../../shared/services/user.service';
+import { UserService, User } from '../../../core/services/user.service';
 
 @Component({
   selector: 'app-liste-users',
