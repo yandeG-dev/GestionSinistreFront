@@ -29,7 +29,7 @@ export class ListeAssureComponent {
   loadUsers(): void {
     this.isLoading = true;
     this.errorMessage = '';
-    this.userService.getUsers().subscribe({
+    this.userService.getAssures().subscribe({
       next: (data) => {
         this.users = data;
         this.isLoading = false;

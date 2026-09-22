@@ -36,6 +36,12 @@ export class UserService {
     });
   }
 
+  getAssures(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.apiUrl}/gestionnaire/assures`, {
+      headers: this.getHeaders()
+    });
+  }
+
   toggleStatus(id: number): Observable<any> {
     return this.http.patch(`${this.apiUrl}/admin/users/${id}/toggle-status`, {}, {
       headers: this.getHeaders()
@@ -50,6 +56,12 @@ export class UserService {
 
   createUser(userData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/admin/professionnal`, userData, {
+      headers: this.getHeaders()
+    });
+  }
+
+  createAssure(assureData: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/gestionnaire/assures`, assureData, {
       headers: this.getHeaders()
     });
   }

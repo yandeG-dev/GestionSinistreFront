@@ -63,7 +63,7 @@ export class ListeSinistreComponent implements OnInit {
 
     if (this.searchQuery) {
       result = result.filter(s =>
-        s.numero_sinistre?.toLowerCase().includes(this.searchQuery) ||
+        s.numeroDossier?.toLowerCase().includes(this.searchQuery) ||
         (s as any).contrat?.vehicule?.immatriculation?.toLowerCase().includes(this.searchQuery)
       );
     }

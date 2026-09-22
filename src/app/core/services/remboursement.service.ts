@@ -38,10 +38,10 @@ export class RemboursementService {
 
         return {
           id: s.id,
-          numeroDossier: s.numero_sinistre,
-          typeSinistre: s.type_sinistre,
+          numeroDossier: s.numeroDossier,
+          typeSinistre: s.typeSinistre,
           montant: montant,
-          dateVirement: s.date_survenance,
+          dateVirement: s.dateSinistre,
           statutRemboursement: statutRemboursement
         };
       });

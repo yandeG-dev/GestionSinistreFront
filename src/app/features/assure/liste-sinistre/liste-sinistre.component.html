@@ -95,7 +95,7 @@
                     <!-- Infos principales -->
                     <div class="space-y-2">
                         <div class="flex items-center space-x-3">
-                            <span class="text-sm font-black text-slate-900">#{{ sinistre.numero_sinistre }}</span>
+                            <span class="text-sm font-black text-slate-900">#{{ sinistre.numeroDossier }}</span>
                             <!-- Badge Statut -->
                             <span
                                 class="px-2.5 py-0.5 rounded-full text-[10px] font-bold" [ngClass]="getStatutClass(sinistre.statut)">
@@ -105,7 +105,7 @@
 
                         <div class="flex flex-wrap items-center gap-y-1 gap-x-4 text-xs text-slate-500">
                             <span class="flex items-center space-x-1 font-semibold text-slate-800">
-                                <span>{{ sinistre.type_sinistre }}</span>
+                                <span>{{ sinistre.typeSinistre }}</span>
                             </span>
                             <span>•</span>
                             <span class="flex items-center space-x-1">

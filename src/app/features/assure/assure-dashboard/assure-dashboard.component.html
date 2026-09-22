@@ -246,12 +246,12 @@
 
                         <tr *ngFor="let sinistre of sinistres" class="hover:bg-slate-50/60 transition-colors">
                             <td class="py-4 px-4">
-                                <p class="font-bold text-slate-800">{{ sinistre.type_sinistre }}</p>
+                                <p class="font-bold text-slate-800">{{ sinistre.typeSinistre }}</p>
                                 <p class="text-[10px] text-slate-400">Déclaré le {{ formatDate(sinistre.created_at) }}
                                 </p>
                             </td>
                             <td class="py-4 px-4 text-slate-600 font-medium">
-                                {{ sinistre.lieu }}
+                                {{ sinistre.lieuSinistre }}
                             </td>
                             <td class="py-4 px-4">
                                 <span

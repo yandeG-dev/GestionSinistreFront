@@ -9,12 +9,12 @@ export interface Document {
 
 export interface Sinistre {
   id: number;
-  numero_sinistre: string;
-  type_sinistre: string;
-  date_survenance: string;
+  numeroDossier: string;
+  typeSinistre: string;
+  dateSinistre: string;
   heureSinistre: string | null;
   description: string;
-  lieu: string;
+  lieuSinistre: string;
   statut: 'En attente' | 'En cours' | 'Clôturé' | 'Archivé' | 'Indemnisé' | 'En traitement';
   assure_id: number;
   gestionnaire_id: number | null;
