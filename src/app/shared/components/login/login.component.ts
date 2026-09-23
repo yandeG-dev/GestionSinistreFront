@@ -1,4 +1,4 @@
-﻿import { Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../core/services/auth.service';
@@ -14,10 +14,15 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   email = '';
   password = '';
+  showPassword = false;
 
   errorMessage = '';
 
   constructor(private authService: AuthService, private router: Router) { }
+
+  togglePassword() {
+    this.showPassword = !this.showPassword;
+  }
 
   onLoginSubmit() {
     this.errorMessage = '';
@@ -33,7 +38,7 @@ export class LoginComponent {
           const user = response.user;
           if (user) {
             if (user.doit_changer_mdp) {
-              this.router.navigate(['/change-password']);
+              this.router.navigate(['/first-login']);
             } else if (user.role === 'Administrateur' || user.role === 'Admin') {
               this.router.navigate(['/admin']);
             } else if (user.role === 'Gestionnaire') {

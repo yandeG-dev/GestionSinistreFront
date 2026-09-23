@@ -10,7 +10,8 @@ import { ListeDemandeComponent } from './features/gestionnaire/liste-demande/lis
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'connexion', component: LoginComponent },
-  { path: 'two-factor-auth', component: TwoFactorAuthComponent },
+      { path: 'two-factor-auth', component: TwoFactorAuthComponent },
+  { path: 'first-login', loadComponent: () => import('./shared/components/change-password-first-login/change-password-first-login.component').then(m => m.ChangePasswordFirstLoginComponent) },
   {
     path: '',
     component: SidebarComponent,
@@ -21,7 +22,7 @@ export const routes: Routes = [
       { path: 'liste-assure', loadComponent: () => import('./features/gestionnaire/liste-assure/liste-assure.component').then(m => m.ListeAssureComponent) },
       { path: 'utilisateurs', component: ListeUsersComponent },
       { path: 'profil', component: ProfilComponent },
-      { path: 'change-password', loadComponent: () => import('./features/change-password/change-password.component').then(m => m.ChangePasswordComponent) },
+      { path: 'change-password', loadComponent: () => import('./shared/components/change-password/change-password.component').then(m => m.ChangePasswordComponent) },
       { path: 'create-assure', loadComponent: () => import('./features/gestionnaire/create-assure/create-assure.component').then(m => m.CreateAssureComponent) },
       { path: 'assure', loadComponent: () => import('./features/assure/assure-dashboard/assure-dashboard.component').then(m => m.AssureDashboardComponent) },
       { path: 'declaration/info-sinistre', loadComponent: () => import('./features/assure/declaration/info-sinistre/info-sinistre.component').then(m => m.InfoSinistreComponent) },
@@ -29,7 +30,7 @@ export const routes: Routes = [
       { path: 'declaration/confirmation', loadComponent: () => import('./features/assure/declaration/confirmation/confirmation.component').then(m => m.ConfirmationComponent) },
       { path: 'mes-sinistres', loadComponent: () => import('./features/assure/liste-sinistre/liste-sinistre.component').then(m => m.ListeSinistreComponent) },
       { path: 'mes-remboursements', loadComponent: () => import('./features/assure/liste-remboursement/liste-remboursement.component').then(m => m.ListeRemboursementComponent) },
-      { path: 'detail-sinistre/:id', loadComponent: () => import('./shared/component/detail-sinistre/detail-sinistre.component').then(m => m.DetailSinistreComponent) },
+      { path: 'detail-sinistre/:id', loadComponent: () => import('./shared/components/detail-sinistre/detail-sinistre.component').then(m => m.DetailSinistreComponent) },
     ]
   },
 ];
