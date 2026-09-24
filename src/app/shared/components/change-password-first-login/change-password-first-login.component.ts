@@ -15,38 +15,78 @@ export class ChangePasswordFirstLoginComponent {
   currentPassword = '';
   newPassword = '';
   confirmPassword = '';
-  
+
+  showCurrentPassword = false;
+  showNewPassword = false;
+  showConfirmPassword = false;
+
   errorMessage = '';
   successMessage = '';
   isLoading = false;
 
+  private readonly specialCharPattern = /[!@#$%^&*]/;
+
   constructor(private authService: AuthService, private router: Router) {}
+
+  get hasMinLength(): boolean {
+    return this.newPassword.length >= 8;
+  }
+
+  get hasUppercase(): boolean {
+    return /[A-Z]/.test(this.newPassword);
+  }
+
+  get hasNumber(): boolean {
+    return /[0-9]/.test(this.newPassword);
+  }
+
+  get hasSpecial(): boolean {
+    return this.specialCharPattern.test(this.newPassword);
+  }
+
+  get passwordsMatch(): boolean {
+    return !!this.confirmPassword && this.newPassword === this.confirmPassword;
+  }
+
+  get isPasswordValid(): boolean {
+    return this.hasMinLength && this.hasUppercase && this.hasNumber && this.hasSpecial && this.passwordsMatch;
+  }
 
   get passwordStrength(): { text: string, class: string, width: string } {
     if (!this.newPassword) return { text: 'Faible', class: 'text-red-500', width: '0%' };
-    
+
     let strength = 0;
-    if (this.newPassword.length >= 8) strength++;
-    if (/[A-Z]/.test(this.newPassword)) strength++;
-    if (/[0-9]/.test(this.newPassword)) strength++;
-    if (/[!@#\$%\^&\*]/.test(this.newPassword)) strength++;
+    if (this.hasMinLength) strength++;
+    if (this.hasUppercase) strength++;
+    if (this.hasNumber) strength++;
+    if (this.hasSpecial) strength++;
 
     if (strength <= 1) return { text: 'Faible', class: 'text-red-500', width: '25%' };
     if (strength === 2 || strength === 3) return { text: 'Moyen', class: 'text-amber-500', width: '50%' };
     return { text: 'Fort', class: 'text-emerald-500', width: '100%' };
   }
 
+  private redirectToDashboard(): void {
+    const user = this.authService.getUser();
+    const role = user?.role;
+
+    if (role === 'Administrateur' || role === 'Admin') {
+      this.router.navigate(['/admin']);
+    } else if (role === 'Gestionnaire') {
+      this.router.navigate(['/gestionnaire']);
+    } else if (role === 'Assure') {
+      this.router.navigate(['/assure']);
+    } else {
+      this.router.navigate(['/profil']);
+    }
+  }
+
   onSubmit() {
     this.errorMessage = '';
     this.successMessage = '';
-    
-    if (this.newPassword !== this.confirmPassword) {
-      this.errorMessage = 'Les mots de passe ne correspondent pas.';
-      return;
-    }
-    
-    if (this.newPassword.length < 8) {
-      this.errorMessage = 'Le mot de passe doit contenir au moins 8 caractères.';
+
+    if (!this.isPasswordValid) {
+      this.errorMessage = 'Le mot de passe ne respecte pas toutes les exigences de sécurité.';
       return;
     }
 
@@ -61,25 +101,23 @@ export class ChangePasswordFirstLoginComponent {
     this.authService.changePassword(payload).subscribe({
       next: (res) => {
         this.isLoading = false;
-        this.successMessage = res.message;
-        
-        // Redirection vers le dashboard après 2 secondes
-        setTimeout(() => {
-          const user = this.authService.getUser();
-          if (user.role === 'Administrateur' || user.role === 'Admin') {
-            this.router.navigate(['/admin']);
-          } else if (user.role === 'Gestionnaire') {
-            this.router.navigate(['/gestionnaire']);
-          } else if (user.role === 'Assure') {
-            this.router.navigate(['/assure']);
-          } else {
-            this.router.navigate(['/profil']);
-          }
-        }, 2000);
+        this.successMessage = res.message || 'Mot de passe changé avec succès.';
+
+        const user = this.authService.getUser();
+        if (user) {
+          user.doit_changer_mdp = false;
+          localStorage.setItem('user', JSON.stringify(user));
+        }
+
+        setTimeout(() => this.redirectToDashboard(), 800);
       },
       error: (err) => {
         this.isLoading = false;
-        this.errorMessage = err.error?.message || 'Erreur lors du changement de mot de passe.';
+        if (err.error?.errors) {
+          this.errorMessage = Object.values(err.error.errors).flat().join('\n');
+        } else {
+          this.errorMessage = err.error?.message || 'Erreur lors du changement de mot de passe.';
+        }
       }
     });
   }

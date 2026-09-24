@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -11,10 +11,13 @@ import { AuthService } from '../../../core/services/auth.service';
   templateUrl: './two-factor-auth.component.html',
   styleUrl: './two-factor-auth.component.css'
 })
-export class TwoFactorAuthComponent implements OnInit {
+export class TwoFactorAuthComponent implements OnInit, OnDestroy {
   code: string[] = ['', '', '', '', '', ''];
   email: string = '';
   errorMessage: string = '';
+  remainingSeconds = 10 * 60;
+
+  private countdownTimer?: ReturnType<typeof setInterval>;
 
   constructor(private authService: AuthService, private router: Router) {
     const navigation = this.router.getCurrentNavigation();
@@ -24,8 +27,34 @@ export class TwoFactorAuthComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.countdownTimer = setInterval(() => {
+      if (this.remainingSeconds === 0) {
+        this.stopCountdown();
+        return;
+      }
+
+      this.remainingSeconds--;
+    }, 1000);
+
     // Optionally redirect to login if no email is found
     // if (!this.email) { this.router.navigate(['/login']); }
+  }
+
+  ngOnDestroy(): void {
+    this.stopCountdown();
+  }
+
+  get formattedRemainingTime(): string {
+    const minutes = Math.floor(this.remainingSeconds / 60).toString().padStart(2, '0');
+    const seconds = (this.remainingSeconds % 60).toString().padStart(2, '0');
+    return `${minutes}:${seconds}`;
+  }
+
+  private stopCountdown(): void {
+    if (this.countdownTimer) {
+      clearInterval(this.countdownTimer);
+      this.countdownTimer = undefined;
+    }
   }
 
   onInput(event: any, index: number) {

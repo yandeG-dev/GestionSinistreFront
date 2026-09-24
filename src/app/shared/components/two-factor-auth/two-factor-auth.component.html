@@ -32,8 +32,7 @@
 
         <!-- Description -->
         <p class="text-xs text-slate-500 leading-relaxed max-w-xs mx-auto mb-8">
-            Nous avons envoyé un code de validation à 6 chiffres par SMS au numéro associé à votre compte (<span
-                class="font-medium text-slate-700">&bull;&bull;&bull;&bull;&bull;&bull; 78</span>). Veuillez le saisir
+            Nous avons envoyé un code de validation à 6 chiffres par e-mail à l'adresse associée à votre compte. Veuillez le saisir
             ci-dessous.
         </p>
 
@@ -66,12 +65,12 @@
         </div>
 
         <!-- Horloge / Expiration -->
-        <div class="flex items-center justify-center space-x-1.5 text-xs text-red-600 font-medium mb-6">
+        <div class="flex items-center justify-center space-x-1.5 text-xs text-red-600 font-medium mb-6" aria-live="polite">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <span>Le code expire dans <span class="font-semibold">01:59</span></span>
+            <span>Le code expire dans <span class="font-semibold">{{ formattedRemainingTime }}</span></span>
         </div>
 
         <!-- Bouton Valider -->

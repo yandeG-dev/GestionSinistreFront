@@ -40,7 +40,6 @@ export class SidebarComponent implements OnInit {
         this.router.navigate(['/connexion']);
       },
       error: () => {
-        // En cas d'erreur réseau, on vide quand même la session locale
         this.authService.clearSession();
         this.router.navigate(['/connexion']);
       }

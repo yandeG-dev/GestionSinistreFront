@@ -10,7 +10,7 @@ import { ListeDemandeComponent } from './features/gestionnaire/liste-demande/lis
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'connexion', component: LoginComponent },
-      { path: 'two-factor-auth', component: TwoFactorAuthComponent },
+  { path: 'two-factor-auth', component: TwoFactorAuthComponent },
   { path: 'first-login', loadComponent: () => import('./shared/components/change-password-first-login/change-password-first-login.component').then(m => m.ChangePasswordFirstLoginComponent) },
   {
     path: '',

@@ -29,9 +29,6 @@ export class LoginComponent {
     this.authService.login(this.email, this.password).subscribe({
       next: (response) => {
         if (response.requires_2fa) {
-          if (response.debug_code) {
-            console.log('DEBUG CODE 2FA:', response.debug_code);
-          }
           this.router.navigate(['/two-factor-auth'], { state: { email: this.email } });
         } else {
           // 2FA n'est pas requis, l'utilisateur est déjà connecté
