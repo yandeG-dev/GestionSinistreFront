@@ -38,5 +38,9 @@ export class SinistreService {
   mesSinistres(): Observable<Sinistre[]> {
     return this.http.get<Sinistre[]>(`${this.apiUrl}/sinistres`);
   }
+
+  sinistresDuGestionnaire(): Observable<Sinistre[]> {
+    return this.http.get<Sinistre[]>(`${this.apiUrl}/gestionnaire/sinistres`);
+  }
 }
 
