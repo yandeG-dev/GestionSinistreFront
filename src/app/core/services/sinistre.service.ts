@@ -42,5 +42,9 @@ export class SinistreService {
   sinistresDuGestionnaire(): Observable<Sinistre[]> {
     return this.http.get<Sinistre[]>(`${this.apiUrl}/gestionnaire/sinistres`);
   }
+
+  getGestionnaireDashboardStats(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/gestionnaire/dashboard-stats`);
+  }
 }
 
